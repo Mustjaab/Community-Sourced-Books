@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Sourced Book Suggestions</title>
+    <link rel="stylesheet" href="stylized-books.css" >
+	<link rel="icon" href="https://fav.farm/📚" />
+</head>
+<body>
+
+<h1> <center> Community Sourced Book Suggestions </center> </h1>
+
+
+<form>
+    <div class='book-suggestion'>
+	
+		<h2>Suggest a Book</h2>
+		
+		<label for="title">Author</label>
+        <input id="title" type="text" required> <br> <br> <br>
+			
+        <label for="desc">Title</label>
+        <input id="desc" type="text" required>
+		<br><br>
+		<button>Save</button> 
+		
+    </div> 
+</form> 
+
+
+<div class='book-recs'>
+	<h2>Books!</h2>
+	<table id="book-table">
+		<thead>
+			<tr>
+				<th>Author</th>
+				<th>Title</th>
+			</tr>
+		</thead>
+		<tbody id="book-tbody"></tbody>
+	</table>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>			
+<script src="BooksDB.js"></script>
+</body>
+</html>
