@@ -40,11 +40,10 @@ async function addTodo(e) {
 
     await db.collection('books').add(newBook);
     
-    // Clear form
     todoTitle.value = '';
     todoDesc.value = '';
     
-    // Refresh the list
+
     showTodos();
     
     console.log('Book added successfully!');
@@ -56,7 +55,7 @@ async function addTodo(e) {
 
 
 async function showTodos() {
-  // Clear current list
+
   while (todos.firstChild) {
     todos.removeChild(todos.firstChild);
   }
