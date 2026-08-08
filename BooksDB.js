@@ -8,43 +8,36 @@ const firebaseConfig = {
     measurementId: "G-Y423XZXJLP"
 };
 
-
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
-
-const todos = document.querySelector('#book-tbody');
+const booksTableBody = document.querySelector('#book-tbody');
 const form = document.querySelector('form');
-const todoTitle = document.querySelector('#title');
-const todoDesc = document.querySelector('#desc');
+const authorInput = document.querySelector('#author');
+const titleInput = document.querySelector('#title');
 
+form.addEventListener('submit', addBook);
 
-form.addEventListener('submit', addTodo);
-
-
-async function addTodo(e) {
+async function addBook(e) {
   e.preventDefault();
   
   const newBook = { 
-    author: todoTitle.value.trim(), 
-    title: todoDesc.value.trim() 
+    author: authorInput.value.trim(), 
+    title: titleInput.value.trim() 
   };
   
-  // Don't add empty books
   if (!newBook.author || !newBook.title) {
     alert('Please fill in both fields');
     return;
   }
   
   try {
-
     await db.collection('books').add(newBook);
     
-    todoTitle.value = '';
-    todoDesc.value = '';
+    authorInput.value = '';
+    titleInput.value = '';
     
-
-    showTodos();
+    displayBooks();
     
     console.log('Book added successfully!');
   } catch(error) {
@@ -53,32 +46,27 @@ async function addTodo(e) {
   }
 }
 
-
-async function showTodos() {
-
-  while (todos.firstChild) {
-    todos.removeChild(todos.firstChild);
+async function displayBooks() {
+  while (booksTableBody.firstChild) {
+    booksTableBody.removeChild(booksTableBody.firstChild);
   }
   
   try {
-
     const snapshot = await db.collection('books')
       .orderBy('author')
       .get();
     
-
     if (snapshot.empty) {
       const row = document.createElement('tr');
       const cell = document.createElement('td');
-      cell.textContent = 'No Books yet. Be the first to suggest one!';
+      cell.textContent = 'No books yet. Be the first to suggest one!';
       cell.setAttribute('colspan', '2');
       cell.style.textAlign = 'center';
       row.appendChild(cell);
-      todos.appendChild(row);
+      booksTableBody.appendChild(row);
       return;
     }
     
-
     snapshot.forEach(doc => {
       const data = doc.data();
       const row = document.createElement('tr');
@@ -91,7 +79,7 @@ async function showTodos() {
       titleCell.textContent = data.title;
       row.appendChild(titleCell);
       
-      todos.appendChild(row);
+      booksTableBody.appendChild(row);
     });
     
     console.log('Books loaded successfully!');
@@ -103,9 +91,8 @@ async function showTodos() {
     cell.setAttribute('colspan', '2');
     cell.style.color = 'red';
     row.appendChild(cell);
-    todos.appendChild(row);
+    booksTableBody.appendChild(row);
   }
 }
 
-
-showTodos();
+displayBooks();
