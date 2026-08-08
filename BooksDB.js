@@ -1,4 +1,3 @@
-// YOUR FIREBASE CONFIG - REPLACE WITH YOUR ACTUAL CONFIG FROM STEP 3
 const firebaseConfig = {
     apiKey: "AIzaSyA3ur3Y8puScQ_XOV4l_vAtnezXhKayy7E",
     authDomain: "book-recs-7587d.firebaseapp.com",
@@ -9,20 +8,20 @@ const firebaseConfig = {
     measurementId: "G-Y423XZXJLP"
 };
 
-// Initialize Firebase
+
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
-// Get DOM elements
+
 const todos = document.querySelector('#book-tbody');
 const form = document.querySelector('form');
 const todoTitle = document.querySelector('#title');
 const todoDesc = document.querySelector('#desc');
 
-// Listen for form submission
+
 form.addEventListener('submit', addTodo);
 
-// Add a book
+
 async function addTodo(e) {
   e.preventDefault();
   
@@ -38,7 +37,7 @@ async function addTodo(e) {
   }
   
   try {
-    // Add to Firestore
+
     await db.collection('books').add(newBook);
     
     // Clear form
@@ -55,7 +54,7 @@ async function addTodo(e) {
   }
 }
 
-// Show all books
+
 async function showTodos() {
   // Clear current list
   while (todos.firstChild) {
@@ -63,12 +62,12 @@ async function showTodos() {
   }
   
   try {
-    // Get all books from Firestore, ordered by author
+
     const snapshot = await db.collection('books')
       .orderBy('author')
       .get();
     
-    // If no books, show message
+
     if (snapshot.empty) {
       const row = document.createElement('tr');
       const cell = document.createElement('td');
@@ -80,7 +79,7 @@ async function showTodos() {
       return;
     }
     
-    // Display each book
+
     snapshot.forEach(doc => {
       const data = doc.data();
       const row = document.createElement('tr');
@@ -99,7 +98,6 @@ async function showTodos() {
     console.log('Books loaded successfully!');
   } catch(error) {
     console.error('Error loading books:', error);
-    // Show error message in the table
     const row = document.createElement('tr');
     const cell = document.createElement('td');
     cell.textContent = 'Error loading books. Please refresh the page.';
@@ -110,5 +108,5 @@ async function showTodos() {
   }
 }
 
-// Load books when page loads
+
 showTodos();
