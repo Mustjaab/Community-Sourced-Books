@@ -70,11 +70,6 @@ th, td {
   border-bottom: 1px solid #DDD;
 }
 
-th {
-  background-color: #655e35;
-  color: white;
-}
-
 tr:hover {
   background-color: #d8f4f6;
   color: black;
