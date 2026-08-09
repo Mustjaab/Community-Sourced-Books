@@ -5,6 +5,8 @@
     <title>Community Sourced Book Suggestions</title>
     <link rel="stylesheet" href="stylized-books.css" >
     <link rel="icon" href="https://fav.farm/📚" />
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body>
 
@@ -32,6 +34,9 @@
 
 <div class='book-recs'>
     <h2>Books!</h2>
+	
+	<label for='alignment-query'> Search Table </label> 
+	<input type="text" id="alignment-query" onkeyup="searchBooks()">
     <table id="book-table">
         <thead>
             <tr>
