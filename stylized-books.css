@@ -1,47 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,700;1,400&display=swap');
+
 body {
-	background-color: #deeef8;
+	background-color: #162402;
+	color: white;
+	font-family: 'Cormorant Garamond', serif;
 }
 
 .book-suggestion {
-	background-color: #312581;
+	background-color: #655e35;
 	color: white;
 	float: left;
 }
 
 button {
-	background-color: #3e476f;
+	background-color: #ac372b;
 	color: white;
+	font-family: 'Cormorant Garamond', serif;
 }
 	
 .book-recs {
-	float: right;
-	background-color: #abb9ff;
+  float: right;
+  background-color: #f7c7c7;
+  color: black;
+  position: fixed;
+  right: 0;
+  width: 600px;         
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-break: break-word; 
+  padding: 15px;
+  box-shadow: -2px 0 5px rgba(0,0,0,0.1);
 }
 
 
 #book-table {
-  table-layout: fixed;
-  margin: 10px auto;
   border-collapse: collapse;
-  border-top: 1px solid #999999;
-  border-bottom: 1px solid #999999;
+  width: 100%;
 }
 
-th,
-td {
-  vertical-align: top;
-  padding: 0.6em;
-}
-
-tr :nth-child(2),
-tr :nth-child(3) {
-  text-align: right;
-  width: 15%;
-}
-
-tr :nth-child(1),
-tr :nth-child(4) {
+th, td {
+  padding: 8px;
   text-align: left;
-  width: 35%;
+  border-bottom: 1px solid #DDD;
 }
 
+tr:hover {
+	background-color: #d8f4f6;
+	color: black;
+}
