@@ -15,6 +15,7 @@ const booksTableBody = document.querySelector('#book-tbody');
 const form = document.querySelector('form');
 const authorInput = document.querySelector('#author');
 const titleInput = document.querySelector('#title');
+const alignmentInput = document.querySelector('#alignment');
 
 form.addEventListener('submit', addBook);
 
@@ -23,7 +24,8 @@ async function addBook(e) {
   
   const newBook = { 
     author: authorInput.value.trim(), 
-    title: titleInput.value.trim() 
+    title: titleInput.value.trim(),
+	alignment: alignmentInput.value.trim()
   };
   
   if (!newBook.author || !newBook.title) {
@@ -36,6 +38,7 @@ async function addBook(e) {
     
     authorInput.value = '';
     titleInput.value = '';
+	alignmentInput.value = '';
     
     displayBooks();
     
@@ -78,6 +81,10 @@ async function displayBooks() {
       const titleCell = document.createElement('td');
       titleCell.textContent = data.title;
       row.appendChild(titleCell);
+	  
+	  const alignmentCell = document.createElement('td');
+	  alignmentCell.textContent = data.alignment;
+	  row.appendChild(alignmentCell);
       
       booksTableBody.appendChild(row);
     });
